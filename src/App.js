@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./components/Header";
-import Products from "./components/Products";
+import ProductContainer from "./containers/ProductContainer";
 import Message from "./components/Message";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
@@ -14,7 +14,7 @@ function App() {
         <main id="mainContainer">
           <div className="container">
             {/* Products */}
-            <Products />
+            <ProductContainer />
             {/* Message */}
             <Message />
             {/* Cart */}
