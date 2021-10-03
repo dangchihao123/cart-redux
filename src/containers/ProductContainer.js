@@ -33,7 +33,7 @@ ProductContainer.propTypes = {
       description: PropTypes.number.isRequired,
       rating: PropTypes.number.isRequired,
     })
-  ),
+  ).isRequired,
 };
 
 const mapStateToProps = (state) => {

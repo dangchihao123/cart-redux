@@ -2,8 +2,9 @@ import "./App.css";
 import Header from "./components/Header";
 import ProductContainer from "./containers/ProductContainer";
 import Message from "./components/Message";
-import Cart from "./components/Cart";
+// import Cart from "./components/Cart";
 import Footer from "./components/Footer";
+import CartContainer from "./containers/CartContainer";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
             {/* Message */}
             <Message />
             {/* Cart */}
-            <Cart />
+            <CartContainer />
           </div>
         </main>
         {/* Footer */}
