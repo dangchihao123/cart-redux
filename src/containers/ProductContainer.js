@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Product from "../components/Product";
 import Products from "../components/Products";
+import PropTypes from "prop-types";
 
 class ProductContainer extends Component {
   render() {
@@ -21,6 +22,19 @@ class ProductContainer extends Component {
     return result;
   };
 }
+
+ProductContainer.propTypes = {
+  product: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      description: PropTypes.number.isRequired,
+      rating: PropTypes.number.isRequired,
+    })
+  ),
+};
 
 const mapStateToProps = (state) => {
   return {
