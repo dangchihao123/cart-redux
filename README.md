@@ -71,7 +71,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 --------------------------------------------------------
-day 1: 
+bài1: 
 - create project cart redux 
 + npx create-react-app cart-redux
 - import template and library
@@ -79,14 +79,25 @@ day 1:
 -app
 --header
 
----Products
-----product
-----product
-----product
+--Products
+---product
+---product
+---product
 --message
 --cart
 ---cartItem
 ---cartResult
 
 --footer
+
+bài 2:
+- cài đặt redux react-redux
+* tạo thư mục
+** reducer
+***index.js
+***products.js
+** action
+** constants
+***ActionTypes.js
+** container
 
