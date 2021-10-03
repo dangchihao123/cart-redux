@@ -112,3 +112,52 @@ bài 4: container
 * container sẽ thực hiện việc kết nối đến store để lấy dữ liệu
 * container sẽ thực hiện việc truyền dữ liệu về cho component
 
+-----------------------------------
+bài 5: checkType kiểm tra dữ liệu khi lấy từ store
+sử dụng checkType của reactjs
+link tham khỏa: https://reactjs.org/docs/typechecking-with-proptypes.html
+
+-----------------------------------
+bài 6: Thêm sản phẩm vào giỏ hàng
+* constants > ActionTypes.js
+- export const ADD_TO_CART = 'ADD_TO_CART'
+* actions > index.js
+- import * as types from 'constants/ActionTypes'
+- export const actAddToCart = (product, quantity)=>{
+    return {
+        type: types.ADD_TO_CART,
+        product, 
+        quantity
+    }
+}
+* reducer > cart.js (nhớ import vào reducer > index.js)
+- import ActionTypes...
+- const initialState = [
+    {
+        product:{
+            id:1,
+            name:...,
+            price...,
+            ...,
+            ...
+        },
+        quantity:5
+    }
+]
+
+const cart =(state=initialState, action) =>{
+    switch(action.typre){
+        case types.ADD_TO_CART:
+        console.log(action)
+        return [... state]
+        default: return state
+    }
+}
+export default cart;
+
+* container > CartContainer.js (được sử dụng thay cho component <Cart /> trong App.js)
+- kết nối đến store
+- lấy state trong store chuyển thành props trong component này
+- checkType props khi lấy từ store
+- tạo hàm showCart() truyền dữ liệu vào CartItem 
+- chuyền dữ liệu bằng children từ CartContainer -> Cart -> CartItem
