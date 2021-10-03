@@ -106,4 +106,9 @@ bài 3: Hiển thị sản phẩm từ state trong store ra components
 * trong products.js tạo 1 hàm hiển thị dữ liệu, tham số truyền vào hàm là 1 props chứa 1 mãng các object product từ store truyền vào
 * trong product.js ta sẽ tạo 1 hàm để hiển thị số sao cho sản phẩm
 
+-----------------------------------
+bài 4: container
+* container được sử dụng như 1 component trung gian giữa redux và component
+* container sẽ thực hiện việc kết nối đến store để lấy dữ liệu
+* container sẽ thực hiện việc truyền dữ liệu về cho component
 
