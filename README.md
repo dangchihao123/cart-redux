@@ -79,10 +79,10 @@ day 1:
 -app
 --header
 
----Products
-----product
-----product
-----product
+--Products
+---product
+---product
+---product
 --message
 --cart
 ---cartItem
