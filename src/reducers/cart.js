@@ -12,6 +12,18 @@ const initialState = [
     },
     quantity: 5,
   },
+  {
+    product: {
+      id: 2,
+      name: "Samsung galaxy s21",
+      image:
+        "https://cdn.tgdd.vn/Products/Images/42/236128/samsung-galaxy-s21-plus-256gb-den-600x600-600x600.jpg",
+      price: 800,
+      description: "sản phẩm do samsung sản xuất",
+      rating: 4,
+    },
+    quantity: 3,
+  },
 ];
 
 const cart = (state = initialState, action) => {
