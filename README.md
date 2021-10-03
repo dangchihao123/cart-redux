@@ -71,7 +71,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 --------------------------------------------------------
-bài1: 
+bài 1: 
 - create project cart redux 
 + npx create-react-app cart-redux
 - import template and library
@@ -89,7 +89,7 @@ bài1:
 ---cartResult
 
 --footer
-
+---------------------------------
 bài 2:
 - cài đặt redux react-redux
 * tạo thư mục
@@ -100,4 +100,10 @@ bài 2:
 ** constants
 ***ActionTypes.js
 ** container
+-----------------------------------
+bài 3: Hiển thị sản phẩm từ state trong store ra components
+* tạo kết nối component products.js đến store
+* trong products.js tạo 1 hàm hiển thị dữ liệu, tham số truyền vào hàm là 1 props chứa 1 mãng các object product từ store truyền vào
+* trong product.js ta sẽ tạo 1 hàm để hiển thị số sao cho sản phẩm
+
 
