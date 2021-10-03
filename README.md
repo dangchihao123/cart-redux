@@ -68,3 +68,25 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+--------------------------------------------------------
+day 1: 
+- create project cart redux 
++ npx create-react-app cart-redux
+- import template and library
+- phân chia components:
+-app
+--header
+
+---Products
+----product
+----product
+----product
+--message
+--cart
+---cartItem
+---cartResult
+
+--footer
+
