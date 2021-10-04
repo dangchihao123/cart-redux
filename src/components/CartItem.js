@@ -45,6 +45,7 @@ class CartItem extends Component {
             data-placement="top"
             title
             data-original-title="Remove item"
+            onClick={() => this.onDelete(item.product)}
           >
             X
           </button>
@@ -54,6 +55,10 @@ class CartItem extends Component {
   }
   showSubTotal = (price, quantity) => {
     return price * quantity;
+  };
+  onDelete = (product) => {
+    let { onDeleteProductInCart } = this.props;
+    onDeleteProductInCart(product);
   };
 }
 
