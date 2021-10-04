@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Product from "../components/Product";
 import Products from "../components/Products";
 import PropTypes from "prop-types";
-import { actAddTocart } from "../actions/index";
+import { actAddTocart, actMessage } from "../actions/index";
 
 class ProductContainer extends Component {
   render() {
@@ -14,7 +14,7 @@ class ProductContainer extends Component {
   // Hàm hiển thị sản phẩm nhận vào tham số là 1 mảng các object sản phẩm
   // Hàm hiển thị sản phẩm nhận vào tham số là 1 mảng các object sản phẩm
   showProduct = (products) => {
-    let { onAddToCart } = this.props;
+    let { onAddToCart, onMessage } = this.props;
     var result = null;
     if (products.length > 0) {
       result = products.map((product, index) => {
@@ -24,6 +24,7 @@ class ProductContainer extends Component {
             product={product}
             key={product.id}
             onAddToCart={onAddToCart}
+            onMessage={onMessage}
           />
         );
       });
@@ -43,6 +44,7 @@ ProductContainer.propTypes = {
       rating: PropTypes.number.isRequired,
     })
   ).isRequired,
+  onMessage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -55,6 +57,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onAddToCart: (product) => {
       dispatch(actAddTocart(product, 1));
+    },
+    onMessage: (message) => {
+      dispatch(actMessage(message));
     },
   };
 };
