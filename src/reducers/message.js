@@ -6,7 +6,7 @@ let initialState = Message.MSG_WELCOME;
 let message = (state = initialState, action) => {
   switch (action.type) {
     case types.MESSAGE:
-      return state;
+      return action.message;
     default:
       return state;
   }

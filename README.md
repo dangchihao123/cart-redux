@@ -238,3 +238,37 @@ return state;
 - components > Message.js
 -- nhận props
 -- hiển thị props ra chỗ nội dung 
+--------------------------
+bài 9: Thay đổi thông báo
+- ở trong container >  ProductContainer.js ta sẽ dispatch cái action actMessage(message), sao đó thì ta sẽ chuyễn action này thành props và chuyển đến component product.JSON
+và truyền vào tham số là cái thông báo muốn thay đổi
+
+showProduct = (products) => {
+    let { onAddToCart, onMessage } = this.props;
+    var result = null;
+    if (products.length > 0) {
+      result = products.map((product, index) => {
+        return (
+          <Product
+            onMessage={onMessage}
+          />
+        );
+      });
+    }
+    return result;
+  };
+
+let mapDispatchToProps = (dispatch)=>{
+    return{
+        (message)=>{
+            dispatch(actMessage(message))
+        }
+    }
+}
+
+- ở components > Product.js 
+
+
+onAddToCart (product) =>{
+    this.props.onAddToCart(Message.MSG_BUY_SUCCESS)
+}
