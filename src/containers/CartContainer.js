@@ -9,10 +9,11 @@ import CartResult from "../components/CartResult";
 class CartContainer extends Component {
   render() {
     let { cart } = this.props;
-    console.log(cart);
+    // console.log(cart);
     return (
       <Cart>
-        {this.showCart(cart)} {this.showTotalAmount(cart)}
+        {this.showCart(cart)}
+        {this.showTotalAmount(cart)}
       </Cart>
     );
   }

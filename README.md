@@ -161,3 +161,48 @@ export default cart;
 - checkType props khi lấy từ store
 - tạo hàm showCart() truyền dữ liệu vào CartItem 
 - chuyền dữ liệu bằng children từ CartContainer -> Cart -> CartItem
+
+-----------------------------------
+bài 7: Thêm sản phẩm vào giỏ hàng (tt)
+* ý tưởng: Bắt sự kiện khi nhấn vào nút button thì sản phẩm sẽ được lưu vào store và localStorage, nếu sản phẩm trong giỏ hàng đã tồn tại rồi thì cập nhật số lượng, nếu chưa có sản phẩm thì thêm sản phẩm vào giỏ hàng
+* các bước làm:
+- bắt sự kiện nút button truyền vào hàm onAddToCart(product) truyền vào tham số product là sản phẩm mà ta muốn mua
+- Tại productContainer.js ta dispatch 1 action chuyển thành props của container và chuyền vào component Card 1 props
+- tại product.js ta nhận props từ productContainer.js chuyền vào hàm onAddToCart
+- tại reducer > cart.js ta xử lý case ADD_TO_CART: để thêm sản phẩm vào trong store
+-- kiểm tra nếu như sản phẩm đã có trong giỏ hàng rồi thì cập nhật lại số lượng (các sản phẩm được phân biệt với nhau qua  id)
+-- viết hàm tìm index của sản phẩm
+-- index !== -1 update quantity tại vị trí index trong mảng , ngược lại thêm sản phẩm vào giỏ hàng
+ 
+let data = JSON.parse(localStorage.getItem('CART'))
+let initialState = data ? data : []
+
+
+let findIndex  = (cart, product) =>{
+    let index = -1;
+    if(cart.length > 0){
+        for(let i = 0; i < cart.length; i++){
+            if(cart[i].product.id === product.id){
+                index = i;
+                break;
+            }
+        }
+    }
+    return index;
+}
+
+case types.ADD_TO_CART:
+
+let {quantity, product} = action
+let index = findIndex(state, product);
+console.log(index) // kiểm tra xem có đúng vị trí hay không
+if(index !== -1){
+    state[index].quantity += quantity;
+}else{
+    state.push({
+        product,
+        quantity
+    })
+}
+localStorage.setItem("CART", JSON.stringify(state));
+return [...state]
