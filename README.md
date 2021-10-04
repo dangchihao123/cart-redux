@@ -206,3 +206,35 @@ if(index !== -1){
 }
 localStorage.setItem("CART", JSON.stringify(state));
 return [...state]
+
+-----------------------------------
+bài 8: hiển thị thông báo
+- constants > ActionTypes.js
+export const MESSAGE = "MESSAGE"
+- actions > index.js
+export const message = ()=>{
+    return{
+        type: types.MESSAGE
+    }
+}
+- reducer > message.js (import file này vào reducer > index.js)
+
+
+import * as Message from '../constants/Message'
+import * as types from '../constants/ActionType'
+let initialState = Message.MSG_WELCOME
+
+case types.MESSAGE:
+    return state;
+default: 
+return state;
+
+- tạo file MessageContainer.js trong container để kết nối và lấy state trong store (tạo file xong nhớ import vào App.js thay thế cho Message.js)
+-- kết nối
+-- lấy state message trong store
+-- truyền vào component Message.js
+
+
+- components > Message.js
+-- nhận props
+-- hiển thị props ra chỗ nội dung 

@@ -7,3 +7,6 @@ export const actAddTocart = (product, quantity) => {
     quantity,
   };
 };
+export const message = () => {
+  return { type: types.MESSAGE };
+};
