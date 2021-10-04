@@ -272,3 +272,59 @@ let mapDispatchToProps = (dispatch)=>{
 onAddToCart (product) =>{
     this.props.onAddToCart(Message.MSG_BUY_SUCCESS)
 }
+
+--------------------------
+bài 10: Xóa sản phẩm khỏi giỏ hàng
+- constants > ActionsTypes.js 
+export const DELETE_PRODUCT_IN_CART = "DELETE_PRODUCT_IN_CART"
+
+- actions > index.js
+export const actDeleteProductCart = (product) => {
+  return { type: types.DELETE_PRODUCT_IN_CART, product };
+};
+
+- reducer > cart.js
+case types.DELETE_PRODUCT_IN_CART:
+      index = findIndex(state, product);
+      if (index !== -1) {
+        state.splice(index, 1);
+      }
+      localStorage.setItem("CART", JSON.stringify(state));
+      return [...state];
+    default:
+      return state;
+  }
+
+- container > CartContainer.js
+
+showCart = (cart) => {
+    let { onDeleteProductInCart } = this.props;
+    let result = message.MSG_CART_EMPTY;
+    if (cart.length > 0) {
+      result = cart.map((item, index) => {
+        return (
+          <CartItem
+            onDeleteProductInCart={onDeleteProductInCart}
+          />
+        );
+      });
+    }
+    return result;
+  };
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onDeleteProductInCart: (product) => {
+      dispatch(actDeleteProductCart(product));
+    },
+  };
+};
+
+- CartItem.js
+-- bắt sự kiện khi nhấn vào nút xóa và truyền tham số vào là item.product
+ onClick={() => this.onDelete(item.product)
+-- nhận props từ CartContainer.js truyền qua 
+onDelete = (product) => {
+    let { onDeleteProductInCart } = this.props;
+    onDeleteProductInCart(product);
+};

@@ -10,3 +10,6 @@ export const actAddTocart = (product, quantity) => {
 export const actMessage = (message) => {
   return { type: types.MESSAGE, message };
 };
+export const actDeleteProductCart = (product) => {
+  return { type: types.DELETE_PRODUCT_IN_CART, product };
+};

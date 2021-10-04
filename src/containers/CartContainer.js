@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Cart from "../components/Cart";
-import * as message from "../constants/message";
+import * as message from "../constants/Message";
 import CartItem from "../components/CartItem";
 import CartResult from "../components/CartResult";
+import { actDeleteProductCart } from "../actions/index";
 
 class CartContainer extends Component {
   render() {
@@ -19,10 +20,18 @@ class CartContainer extends Component {
   }
 
   showCart = (cart) => {
+    let { onDeleteProductInCart } = this.props;
     let result = message.MSG_CART_EMPTY;
     if (cart.length > 0) {
       result = cart.map((item, index) => {
-        return <CartItem key={item.id} item={item} index={index} />;
+        return (
+          <CartItem
+            key={item.id}
+            item={item}
+            index={index}
+            onDeleteProductInCart={onDeleteProductInCart}
+          />
+        );
       });
     }
     return result;
@@ -57,5 +66,12 @@ const mapStateToProps = (state) => {
     cart: state.cart,
   };
 };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onDeleteProductInCart: (product) => {
+      dispatch(actDeleteProductCart(product));
+    },
+  };
+};
 
-export default connect(mapStateToProps, null)(CartContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CartContainer);
