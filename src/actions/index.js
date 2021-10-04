@@ -13,3 +13,6 @@ export const actMessage = (message) => {
 export const actDeleteProductCart = (product) => {
   return { type: types.DELETE_PRODUCT_IN_CART, product };
 };
+export const actUpdateProductCart = (product, quantity) => {
+  return { type: types.UPDATE_PRODUCT_IN_CART, product, quantity };
+};

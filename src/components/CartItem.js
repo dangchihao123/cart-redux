@@ -1,9 +1,17 @@
 import React, { Component } from "react";
+import * as Message from "../constants/Message";
 
 class CartItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      quantity: 1,
+    };
+  }
   render() {
     let { item } = this.props;
-    console.log(item);
+    let { quantity } = item;
+    // console.log(item);
     return (
       <tr>
         <th scope="row">
@@ -20,17 +28,19 @@ class CartItem extends Component {
         </td>
         <td>{item.product.price}$</td>
         <td className="center-on-small-only">
-          <span className="qty">{item.quantity}</span>
+          <span className="qty">{quantity}</span>
           <div className="btn-group radio-group" data-toggle="buttons">
             <label
               className="btn btn-sm btn-primary
                                                 btn-rounded waves-effect waves-light"
+              onClick={() => this.onUpdate(item.product, item.quantity - 1)}
             >
               <a>—</a>
             </label>
             <label
               className="btn btn-sm btn-primary
                                                 btn-rounded waves-effect waves-light"
+              onClick={() => this.onUpdate(item.product, item.quantity + 1)}
             >
               <a>+</a>
             </label>
@@ -57,8 +67,17 @@ class CartItem extends Component {
     return price * quantity;
   };
   onDelete = (product) => {
-    let { onDeleteProductInCart } = this.props;
+    let { onDeleteProductInCart, onMessage } = this.props;
     onDeleteProductInCart(product);
+    onMessage(Message.MSG_DELETE_PRODUCT_IN_CART_SUCCESS);
+  };
+  onUpdate = (product, quantity) => {
+    if (quantity > 0) {
+      this.setState({
+        quantity: quantity,
+      });
+      this.props.onUpdate(product, quantity);
+    }
   };
 }
 

@@ -328,3 +328,70 @@ onDelete = (product) => {
     let { onDeleteProductInCart } = this.props;
     onDeleteProductInCart(product);
 };
+
+-----------------------------------
+bài 11: thông báo khi xóa sản phẩm khỏi giỏ hàng
+BÀI 12: CẬP NHẬT SỐ LƯỢNG SẢN PHẨM TRONG GIỎ HÀNG 
+- constants > ActionTypes.js
+export const UPDATE_PRODUCT_IN_CART = "UPDATE_PRODUCT_IN_CART";
+- actions > index.js
+export const actUpdateProductCart = (product, quantity) => {
+  return { type: types.UPDATE_PRODUCT_IN_CART, product, quantity };
+};
+-reducer > cart.js
+case types.UPDATE_PRODUCT_IN_CART:
+      index = findIndex(state, product);
+      // tìm thấy
+      if (index !== -1) {
+        state[index].quantity = quantity;
+      }
+      localStorage.setItem("CART", JSON.stringify(state));
+      return [...state];
+
+- container > CartContainer.js
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onUpdate: (product, quantity) => {
+      dispatch(actUpdateProductCart(product, quantity));
+    },
+  };
+};
+
+showCart = (cart) => {
+    let {onUpdate } = this.props;
+    let result = message.MSG_CART_EMPTY;
+    if (cart.length > 0) {
+      result = cart.map((item, index) => {
+        return (
+          <CartItem
+            onUpdate={onUpdate}
+          />
+        );
+      });
+    }
+
+- CartItem.js
+
+constructor(props) {
+    super(props);
+    this.state = {
+      quantity: 1,
+    };
+  }
+render() {
+    let { quantity } = item;
+    return(
+      <span className="qty">{quantity}</span>
+    )
+}
+onClick={() => this.onUpdate(item.product, item.quantity - 1)}
+onClick={() => this.onUpdate(item.product, item.quantity + 1)}
+
+onUpdate = (product, quantity) => {
+    if (quantity > 0) {
+      this.setState({
+        quantity: quantity,
+      });
+      this.props.onUpdate(product, quantity);
+    }
+  };

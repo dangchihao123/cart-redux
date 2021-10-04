@@ -5,7 +5,11 @@ import Cart from "../components/Cart";
 import * as message from "../constants/Message";
 import CartItem from "../components/CartItem";
 import CartResult from "../components/CartResult";
-import { actDeleteProductCart } from "../actions/index";
+import {
+  actDeleteProductCart,
+  actMessage,
+  actUpdateProductCart,
+} from "../actions/index";
 
 class CartContainer extends Component {
   render() {
@@ -20,7 +24,7 @@ class CartContainer extends Component {
   }
 
   showCart = (cart) => {
-    let { onDeleteProductInCart } = this.props;
+    let { onDeleteProductInCart, onMessage, onUpdate } = this.props;
     let result = message.MSG_CART_EMPTY;
     if (cart.length > 0) {
       result = cart.map((item, index) => {
@@ -30,6 +34,8 @@ class CartContainer extends Component {
             item={item}
             index={index}
             onDeleteProductInCart={onDeleteProductInCart}
+            onMessage={onMessage}
+            onUpdate={onUpdate}
           />
         );
       });
@@ -70,6 +76,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onDeleteProductInCart: (product) => {
       dispatch(actDeleteProductCart(product));
+    },
+    onMessage: (message) => {
+      dispatch(actMessage(message));
+    },
+    onUpdate: (product, quantity) => {
+      dispatch(actUpdateProductCart(product, quantity));
     },
   };
 };
